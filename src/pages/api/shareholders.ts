@@ -1,4 +1,4 @@
-import prisma from '../../lib/prisma';
+import prisma from '../../../lib/prisma';
 import type { NextApiHandler } from 'next';
 
 // This API endpoint will return all shareholders.

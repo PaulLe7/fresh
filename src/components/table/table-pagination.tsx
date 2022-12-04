@@ -1,3 +1,7 @@
-import getShareholders from '../../hooks/getShareholders';
+interface Props {
+  page: number;
+  pageSize: number;
+  totalSize: number;
+}
 
-export const TablePagination = () => {};
+export const TablePagination = ({ page, pageSize, totalSize }: Props) => {};

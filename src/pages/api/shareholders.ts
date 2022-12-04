@@ -11,14 +11,26 @@ const handler: NextApiHandler = async (req, res) => {
       return;
     }
 
-    const { searchTerm, searchField } = req.query as {
-      searchTerm: string;
-      searchField: string;
-    };
+    const { searchTerm, searchField, cursor, page, pageSize, orderBy, order } =
+      req.query as unknown as {
+        searchTerm: string;
+        searchField: string;
+        cursor: string;
+        page: number;
+        pageSize: number;
+        orderBy: string;
+        order: string;
+      };
+
+    const take = pageSize ? Number(pageSize) : 10;
+    const skip = page && pageSize ? Number(page) * take : 1;
 
     const [shareholders, totalShareholders] = await prisma.$transaction([
       prisma.shareholder.findMany({
-        take: 10,
+        skip: skip,
+        take: take,
+        cursor: cursor ? { id: cursor } : undefined,
+        orderBy: orderBy ? { [orderBy]: order } : undefined,
         where: searchTerm
           ? {
               [searchField]: {
@@ -28,10 +40,26 @@ const handler: NextApiHandler = async (req, res) => {
             }
           : {},
       }),
-      prisma.shareholder.count(),
+      prisma.shareholder.count({
+        skip: skip,
+        take: take,
+        cursor: cursor ? { id: cursor } : undefined,
+        orderBy: orderBy ? { [orderBy]: order } : undefined,
+        where: searchTerm
+          ? {
+              [searchField]: {
+                startsWith: searchTerm,
+                mode: 'insensitive',
+              },
+            }
+          : {},
+      }),
     ]);
 
-    res.status(200).json({ shareholders, totalShareholders });
+    // cursor-based pagination
+    const myCursor = shareholders[shareholders.length - 1]?.id;
+
+    res.status(200).json({ shareholders, totalShareholders, myCursor });
   } catch (error) {
     res.status(500).json({ error });
   }

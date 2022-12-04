@@ -12,14 +12,31 @@ import { SearchBar } from '../search/search';
 import getShareholders from '../../hooks/getShareholders';
 import { formatNumbers } from '../../utils/formatNumbers';
 import { formatDate } from '../../utils/formatDate';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const ShareholderTable = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchField, setSearchField] = useState('name');
+  const [cursor, setCursor] = useState('');
+  const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const [orderBy, setOrderBy] = useState('name');
+  const [order, setOrder] = useState('asc');
 
-  const { shareholders, totalShareholders, isLoading, isError } =
-    getShareholders({ searchTerm, searchField });
+  const { shareholders, totalShareholders, myCursor, isLoading, isError } =
+    getShareholders({
+      searchTerm,
+      searchField,
+      cursor,
+      page,
+      pageSize,
+      orderBy,
+      order,
+    });
+
+  useEffect(() => {
+    setCursor(myCursor);
+  }, [page]);
 
   const headings = [
     { name: 'name', align: 'text-left' },

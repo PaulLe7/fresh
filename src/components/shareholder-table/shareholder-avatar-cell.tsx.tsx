@@ -22,8 +22,8 @@ export const ShareholderAvatarCell = ({ initials, fullName, email }: Props) => {
       </div>
       <div className="ml-8">
         <div className="text-sm font-medium text-gray-900">{fullName}</div>
-        <div className="flex flex-row ">
-          <div className="w-4 h-4 pt-0.5 mr-2">
+        <div className="flex flex-row">
+          <div className="w-4 h-4 mt-0.5 mr-2">
             <Image
               className=" text-typography-grey"
               src="/icons/mail.svg"

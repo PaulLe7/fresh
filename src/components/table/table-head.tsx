@@ -6,8 +6,6 @@ interface Props {
 
 export const TableHead = ({ children }: Props) => {
   return (
-    <thead className="text-xs uppercase bg-secondary-grey-light-2">
-      {children}
-    </thead>
+    <thead className="uppercase bg-secondary-grey-light-2">{children}</thead>
   );
 };

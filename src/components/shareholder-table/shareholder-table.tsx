@@ -7,14 +7,19 @@ import {
   TableCell,
 } from '../table';
 import { ShareholderAvatarCell } from './shareholder-avatar-cell.tsx';
+import { SearchBar } from '../search/search';
 
 import getShareholders from '../../hooks/getShareholders';
 import { formatNumbers } from '../../utils/formatNumbers';
 import { formatDate } from '../../utils/formatDate';
+import { useState } from 'react';
 
 export const ShareholderTable = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchField, setSearchField] = useState('name');
+
   const { shareholders, totalShareholders, isLoading, isError } =
-    getShareholders();
+    getShareholders({ searchTerm, searchField });
 
   const headings = [
     { name: 'name', align: 'text-left' },
@@ -41,42 +46,52 @@ export const ShareholderTable = () => {
   };
 
   return (
-    <div className="hidden w-full my-6 border rounded-lg border-secondary-grey-light md:block">
-      <Table>
-        <TableHead>
-          <TableRow>
-            {headings.map((heading) => (
-              <TableHeadCell key={heading.name} align={heading.align}>
-                {heading.name}
-              </TableHeadCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {!isLoading &&
-            !isError &&
-            shareholders.map((shareholder: any) => (
-              <TableRow key={shareholder.id}>
-                <TableCell align="text-left">
-                  {createAvatarCell(
-                    shareholder.firstName,
-                    shareholder.lastName,
-                    shareholder.email
-                  )}
-                </TableCell>
-                <TableCell align="text-left">
-                  {shareholder.postalCode || `N/A`}
-                </TableCell>
-                <TableCell align="text-right">
-                  {formatNumbers(shareholder.shareCount)}
-                </TableCell>
-                <TableCell align="text-right">
-                  {formatDate(shareholder.heldSince)}
-                </TableCell>
-              </TableRow>
-            ))}
-        </TableBody>
-      </Table>
-    </div>
+    <>
+      <div className="flex flex-row justify-start">
+        <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          searchField={searchField}
+          setSearchField={setSearchField}
+        />
+      </div>
+      <div className="md:block hidden w-full border border-secondary-grey-light rounded-lg my-6 ">
+        <Table>
+          <TableHead>
+            <TableRow>
+              {headings.map((heading) => (
+                <TableHeadCell key={heading.name} align={heading.align}>
+                  {heading.name}
+                </TableHeadCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {!isLoading &&
+              !isError &&
+              shareholders.map((shareholder: any) => (
+                <TableRow key={shareholder.id}>
+                  <TableCell align="text-left">
+                    {createAvatarCell(
+                      shareholder.firstName,
+                      shareholder.lastName,
+                      shareholder.email
+                    )}
+                  </TableCell>
+                  <TableCell align="text-left">
+                    {shareholder.postalCode || `N/A`}
+                  </TableCell>
+                  <TableCell align="text-right">
+                    {formatNumbers(shareholder.shareCount)}
+                  </TableCell>
+                  <TableCell align="text-right">
+                    {formatDate(shareholder.heldSince)}
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </div>
+    </>
   );
 };

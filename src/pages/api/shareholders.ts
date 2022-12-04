@@ -8,13 +8,25 @@ const handler: NextApiHandler = async (req, res) => {
     if (req.method !== 'GET') {
       res.setHeader('Allow', ['GET']);
       res.status(405).end(`Method ${req.method} Not Allowed`);
-
       return;
     }
 
+    const { searchTerm, searchField } = req.query as {
+      searchTerm: string;
+      searchField: string;
+    };
+
     const [shareholders, totalShareholders] = await prisma.$transaction([
       prisma.shareholder.findMany({
-        take: 20,
+        take: 10,
+        where: searchTerm
+          ? {
+              [searchField]: {
+                startsWith: searchTerm,
+                mode: 'insensitive',
+              },
+            }
+          : {},
       }),
       prisma.shareholder.count(),
     ]);

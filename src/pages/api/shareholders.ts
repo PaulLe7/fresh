@@ -13,7 +13,9 @@ const handler: NextApiHandler = async (req, res) => {
     }
 
     const [shareholders, totalShareholders] = await prisma.$transaction([
-      prisma.shareholder.findMany(),
+      prisma.shareholder.findMany({
+        take: 20,
+      }),
       prisma.shareholder.count(),
     ]);
 

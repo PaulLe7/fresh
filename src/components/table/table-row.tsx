@@ -5,5 +5,5 @@ interface Props {
 }
 
 export const TableRow = ({ children }: Props) => {
-  return <tr>{children}</tr>;
+  return <tr className={`border-y`}>{children}</tr>;
 };

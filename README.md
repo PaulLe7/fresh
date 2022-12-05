@@ -91,7 +91,7 @@ We'd like you to pick 1-2 problems and come up with an idea to solve them. Use y
     - <span style="color:red; font-weight:bold">Not done: </span> Will require making changes to the shareholder table schema
 
 7. Add a new column that converts 'held since' to 'held duration'
-    - <span style="color:red; font-weight:bold">Not done</span> Implemented?
+    - <span style="color:green; font-weight:bold">Done</span> Implemented?
 
 8. Allow the option to choose from showing 10, 25, 50 and 100 shareholders at once on a page
     - <span style="color:green; font-weight:bold">Done: </span> Implemented with default set at 10?

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import moment from 'moment';
 
 import {
   Table,
@@ -45,6 +46,7 @@ export const ShareholderTable = () => {
     { name: 'postal code', value: 'postalCode', align: 'text-left' },
     { name: 'current holding', value: 'shareCount', align: 'text-right' },
     { name: 'held since', value: 'heldSince', align: 'text-right' },
+    { name: 'held duration', value: 'heldSince', align: 'text-right' },
   ];
 
   const createAvatarCell = (
@@ -115,6 +117,13 @@ export const ShareholderTable = () => {
                   </TableCell>
                   <TableCell align="text-right">
                     {formatDate(shareholder.heldSince)}
+                  </TableCell>
+                  <TableCell align="text-right">
+                    {moment
+                      .duration(
+                        moment(Date()).diff(moment(shareholder.heldSince))
+                      )
+                      .humanize()}
                   </TableCell>
                 </TableRow>
               ))}

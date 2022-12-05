@@ -14,7 +14,9 @@ export const ExportCSV = ({ data }: Props) => {
       <div>
         <CSVLink data={csvData}>
           <div className="flex flex-row text-gray-500">
-            <div className="mr-5 flex flex-row items-center">Export page</div>
+            <div className="mr-5 flex flex-row items-center">
+              Export page to CSV
+            </div>
             <div className="ml-2 w-7 h-7 mt-0.5 mr-2 ">
               <Image
                 className="text-typography-grey"
@@ -26,7 +28,6 @@ export const ExportCSV = ({ data }: Props) => {
             </div>
           </div>
         </CSVLink>
-        <CSVDownload data={csvData} target="_blank" />
       </div>
     );
   } else {

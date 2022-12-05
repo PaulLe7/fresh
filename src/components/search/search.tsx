@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { SearchNameEmailToggle } from './search-name-email-select';
+import { FilterBar } from './filter-bar';
 
 interface Props {
   searchTerm: string;
@@ -45,6 +46,9 @@ export const SearchBar = ({
       </div>
       <div className="ml-2">
         <SearchNameEmailToggle setSearchField={setSearchField} />
+      </div>
+      <div className="ml-10">
+        <FilterBar description="Only top 50 holders" value="" />
       </div>
     </div>
   );

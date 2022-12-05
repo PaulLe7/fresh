@@ -42,7 +42,7 @@ export const SearchNameEmailToggle = ({ setSearchField }: Props) => {
                 key={searchFieldListIdx}
                 className={({ active }) =>
                   `relative cursor-default select-none py-2 pl-3 pr-4 ${
-                    active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
+                    active ? 'bg-blue-100 text-blue-900' : 'text-gray-900'
                   }`
                 }
                 value={searchFieldList}

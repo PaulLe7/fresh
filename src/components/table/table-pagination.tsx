@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface Props {
   page: number;
   pageSize: number;
@@ -56,16 +58,20 @@ export const TablePagination = ({
       : // if the current page is > 4 and < the last page - 3, show the first page, page +1 and page -1, and the last page
         [1, '...', page - 1, page, page + 1, '...', numPages];
 
-  const resultsMessage = `Showing ${page * pageSize - pageSize + 1} to ${
-    page * pageSize > totalSize ? totalSize : page * pageSize
-  } of ${totalSize} results`;
+  const firstShowingResult = page * pageSize - pageSize + 1;
+  const lastShowingResult =
+    page * pageSize > totalSize ? totalSize : page * pageSize;
 
   return (
     <div className="flex flex-row">
       <div className="flex flex-row items-center">
-        <div className="text-sm text-gray-500">{resultsMessage}</div>
-        <div className="flex flex-row items-center ml-4">
-          <div className="text-sm text-gray-500">Rows per page:</div>
+        <div className="text-sm text-gray-500">
+          Showing <span className="font-bold">{firstShowingResult}</span> to{' '}
+          <span className="font-bold">{lastShowingResult}</span> of{' '}
+          <span className="font-bold">{totalSize} results</span>
+        </div>
+        <div className="flex flex-row items-center ml-10 md:flex hidden">
+          <div className="text-sm text-gray-500 ">Rows per page:</div>
           <div className="ml-2">
             <select
               className="text-sm text-gray-500 border border-gray-300 rounded-md px-2 py-1"
@@ -84,15 +90,38 @@ export const TablePagination = ({
         </div>
       </div>
       <div className="flex flex-row items-center ml-auto"></div>
+
+      <button
+        className="font-semibold border w-9 h-9"
+        disabled={page === 1}
+        onClick={() => {
+          setPage(page - 1 + -1);
+        }}
+      >
+        <Image
+          className=" text-typography-grey"
+          src="/icons/arrow-left.svg"
+          alt="Mail Icon"
+          width={10}
+          height={10}
+        />
+      </button>
       <div>
         {pageList.map((pageNum: any) => {
           return pageNum == '...' ? (
             <span className="px-2">...</span>
           ) : pageNum == page ? (
-            <span className="px-2 font-bold">{pageNum}</span>
+            <button
+              className="px-2 hidden border w-9 h-9 font-semibold sm:inline-block"
+              disabled
+            >
+              <span className="text-primary-black font-extrabold ">
+                {pageNum}
+              </span>
+            </button>
           ) : (
             <button
-              className="px-2"
+              className="font-normal border w-9 h-9"
               onClick={() => {
                 setPage(pageNum - 1);
               }}
@@ -101,6 +130,23 @@ export const TablePagination = ({
             </button>
           );
         })}
+      </div>
+      <div>
+        <button
+          className="font-semibold border w-9 h-9"
+          disabled={page === numPages}
+          onClick={() => {
+            setPage(page - 1 + 1);
+          }}
+        >
+          <Image
+            className=" text-typography-grey"
+            src="/icons/arrow-right.svg"
+            alt="Mail Icon"
+            width={10}
+            height={10}
+          />
+        </button>
       </div>
     </div>
   );

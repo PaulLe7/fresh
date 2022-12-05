@@ -23,13 +23,9 @@ const getShareholders = ({
   order,
 }: Props) => {
   const getQueryParams = (searchTerm: string, searchField: string) => {
-    return `?searchTerm=${searchTerm}&searchField=${
-      searchField == 'name' ? 'firstName' : 'email'
-    }${
+    return `?searchTerm=${searchTerm}&searchField=${searchField}${
       cursor && page > 1 ? '&cursor=' + cursor : ''
-    }&page=${page}&pageSize=${pageSize}&orderBy=${
-      orderBy == 'name' ? 'firstName' : ''
-    }&order=${order}`;
+    }&page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&order=${order}`;
   };
 
   const params = getQueryParams(searchTerm, searchField);

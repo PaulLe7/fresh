@@ -18,11 +18,11 @@ import { formatDate } from '../../utils/formatDate';
 
 export const ShareholderTable = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchField, setSearchField] = useState('name');
+  const [searchField, setSearchField] = useState('firstName');
   const [cursor, setCursor] = useState('');
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
-  const [orderBy, setOrderBy] = useState('name');
+  const [orderBy, setOrderBy] = useState('firstName');
   const [order, setOrder] = useState('asc');
 
   const { shareholders, totalShareholders, myCursor, isLoading, isError } =
@@ -41,10 +41,10 @@ export const ShareholderTable = () => {
   }, [page]);
 
   const headings = [
-    { name: 'name', align: 'text-left' },
-    { name: 'postal code', align: 'text-left' },
-    { name: 'current holding', align: 'text-right' },
-    { name: 'held since', align: 'text-right' },
+    { name: 'name', value: 'firstName', align: 'text-left' },
+    { name: 'postal code', value: 'postalCode', align: 'text-left' },
+    { name: 'current holding', value: 'shareCount', align: 'text-right' },
+    { name: 'held since', value: 'heldSince', align: 'text-right' },
   ];
 
   const createAvatarCell = (
@@ -79,7 +79,16 @@ export const ShareholderTable = () => {
           <TableHead>
             <TableRow>
               {headings.map((heading) => (
-                <TableHeadCell key={heading.name} align={heading.align}>
+                <TableHeadCell
+                  key={heading.name}
+                  align={heading.align}
+                  orderBy={orderBy}
+                  order={order}
+                  name={heading.value}
+                  setOrder={setOrder}
+                  setOrderBy={setOrderBy}
+                  setPage={setPage}
+                >
                   {heading.name}
                 </TableHeadCell>
               ))}

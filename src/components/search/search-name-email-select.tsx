@@ -3,7 +3,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
 const searchFieldList = [
-  { field: 'Name', value: 'name' },
+  { field: 'Name', value: 'firstName' },
   { field: 'Email', value: 'email' },
 ];
 

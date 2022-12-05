@@ -6,7 +6,7 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className="min-h-screen min-w-screen p-2">
+    <div className="min-h-screen min-w-screen md:p-2 p-4 bg-secondary-grey-light-2 md:bg-white">
       {/* Search bar */}
       {/* Filtering checkboxes */}
       {children}

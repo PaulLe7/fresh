@@ -65,8 +65,13 @@ export const TablePagination = ({
   return (
     <div className="flex flex-row">
       <div className="flex flex-row items-center">
-        <div className="text-sm text-gray-500">
+        <div className="text-sm text-gray-500 sm:block hidden">
           Showing <span className="font-bold">{firstShowingResult}</span> to{' '}
+          <span className="font-bold">{lastShowingResult}</span> of{' '}
+          <span className="font-bold">{totalSize} results</span>
+        </div>
+        <div className="text-sm text-gray-500 sm:hidden">
+          <span className="font-bold">{firstShowingResult}</span>-
           <span className="font-bold">{lastShowingResult}</span> of{' '}
           <span className="font-bold">{totalSize} results</span>
         </div>
@@ -106,7 +111,7 @@ export const TablePagination = ({
           height={10}
         />
       </button>
-      <div>
+      <div className="sm:block hidden">
         {pageList.map((pageNum: any) => {
           return pageNum == '...' ? (
             <span className="px-2">...</span>

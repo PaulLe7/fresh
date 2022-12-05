@@ -32,8 +32,8 @@ export const SearchBar = ({
   };
 
   return (
-    <div className="flex flex-row text-sm w-full">
-      <div className="flex flex-row border border-secondary-grey-light rounded-lg px-4 py-2 focus-within:ring">
+    <div className="flex flex-row text-sm w-full sm:flex justify-center">
+      <div className="flex flex-row border border-secondary-grey-light rounded-lg px-4 py-2 focus-within:ring bg-white">
         <div className="w-5 h-5 p-0.5">
           <Image
             className=" text-typography-grey"
@@ -55,7 +55,7 @@ export const SearchBar = ({
       <div className="ml-2">
         <SearchNameEmailToggle setSearchField={setSearchField} />
       </div>
-      <div className="ml-auto flex flex-row items-center">
+      <div className="ml-auto sm:flex hidden flex-row items-center">
         <FilterBar
           description="Only top 50 holders"
           orderBy="shareCount"
@@ -67,7 +67,7 @@ export const SearchBar = ({
         />
       </div>
       {/* // align items to left of screen */}
-      <div className="ml-10 flex flex-row items-center">
+      <div className="ml-10 md:flex hidden flex-row items-center">
         <ExportCSV data={data} />
       </div>
     </div>

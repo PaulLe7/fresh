@@ -59,7 +59,7 @@ We'd like you to pick 1-2 problems and come up with an idea to solve them. Use y
 1. Create components for the shareholder table as represented in the figma design
 
    - <span style="color:green; font-weight:bold">[DONE]: </span> Create desktop view
-   - <span style="color:red; font-weight:bold">[NOT DONE]</span> Create mobile view
+   - <span style="color:green; font-weight:bold">[DONE]</span> Create mobile view
 
 2. Load the data from the API endpoint into the shareholder table
 

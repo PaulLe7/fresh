@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import Image from 'next/image';
-import { clsx } from 'clsx';
 
 interface Props {
   children: ReactNode;
@@ -37,20 +36,22 @@ export const TableHeadCell = ({
       }}
     >
       <div
-        className={clsx('group flex flex-row w-full h-full  items-center', {
-          ['justify-start']: align === 'text-left',
-          ['justify-end']: align === 'text-right',
-        })}
+        className={`group flex flex-row w-full h-full  items-center ${
+          align === 'text-left'
+            ? 'justify-start'
+            : align === 'text-right'
+            ? 'justify-end'
+            : ''
+        }`}
       >
         {align === 'text-right' && isCurrentOrderBy ? (
           <div className="relative w-2 h-2 mr-2">
             <Image
-              className={clsx(
-                'group-hover:text-typography-disabled text stroke-1',
-                {
-                  ['rotate-180']: order === 'asc',
+              className={`
+                group-hover:text-typography-disabled text stroke-1 ${
+                  order === 'asc' ? 'rotate-180' : ''
                 }
-              )}
+              )`}
               src="/icons/arrow.svg"
               alt="Mail Icon"
               layout="fill"
@@ -61,9 +62,11 @@ export const TableHeadCell = ({
         {align === 'text-left' && isCurrentOrderBy ? (
           <div className="relative w-2 h-2 ml-2">
             <Image
-              className={clsx('group-hover:text-typography-disabled stroke-1', {
-                ['rotate-180']: order === 'asc',
-              })}
+              className={`
+              group-hover:text-typography-disabled text stroke-1 ${
+                order === 'asc' ? 'rotate-180' : ''
+              }
+            )`}
               src="/icons/arrow.svg"
               alt="Mail Icon"
               layout="fill"

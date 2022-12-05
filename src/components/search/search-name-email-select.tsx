@@ -2,7 +2,10 @@ import { Fragment, useEffect, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 
-const searchFieldList = [{ field: 'Name' }, { field: 'Email' }];
+const searchFieldList = [
+  { field: 'Name', value: 'name' },
+  { field: 'Email', value: 'email' },
+];
 
 interface Props {
   setSearchField: Function;
@@ -12,7 +15,7 @@ export const SearchNameEmailToggle = ({ setSearchField }: Props) => {
   const [selected, setSelected] = useState(searchFieldList[0]);
 
   useEffect(() => {
-    setSearchField(selected.field);
+    setSearchField(selected.value);
   }, [selected, setSearchField]);
 
   return (

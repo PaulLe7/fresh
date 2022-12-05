@@ -23,13 +23,12 @@ const handler: NextApiHandler = async (req, res) => {
       };
 
     const take = pageSize ? Number(pageSize) : 10;
-    const skip = page && pageSize ? Number(page) * take : 1;
+    const skip = page && pageSize ? Number(page) * Number(pageSize) : 1;
 
     const [shareholders, totalShareholders] = await prisma.$transaction([
       prisma.shareholder.findMany({
         skip: skip,
         take: take,
-        cursor: cursor ? { id: cursor } : undefined,
         orderBy: orderBy ? { [orderBy]: order } : undefined,
         where: searchTerm
           ? {
@@ -41,9 +40,6 @@ const handler: NextApiHandler = async (req, res) => {
           : {},
       }),
       prisma.shareholder.count({
-        skip: skip,
-        take: take,
-        cursor: cursor ? { id: cursor } : undefined,
         orderBy: orderBy ? { [orderBy]: order } : undefined,
         where: searchTerm
           ? {

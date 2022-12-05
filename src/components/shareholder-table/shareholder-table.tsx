@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import {
   Table,
   TableHead,
@@ -8,11 +10,11 @@ import {
 } from '../table';
 import { ShareholderAvatarCell } from './shareholder-avatar-cell.tsx';
 import { SearchBar } from '../search/search';
+import { TablePagination } from '../table/table-pagination';
 
 import getShareholders from '../../hooks/getShareholders';
 import { formatNumbers } from '../../utils/formatNumbers';
 import { formatDate } from '../../utils/formatDate';
-import { useState, useEffect } from 'react';
 
 export const ShareholderTable = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -109,6 +111,13 @@ export const ShareholderTable = () => {
           </TableBody>
         </Table>
       </div>
+      <TablePagination
+        page={page}
+        pageSize={pageSize}
+        totalSize={totalShareholders}
+        setPage={setPage}
+        setPageSize={setPageSize}
+      />
     </>
   );
 };

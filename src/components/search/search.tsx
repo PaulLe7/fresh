@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { SearchNameEmailToggle } from './search-name-email-select';
 import { FilterBar } from './filter-bar';
+import { ExportCSV } from '../../utils/exportPage';
 
 interface Props {
   searchTerm: string;
@@ -12,17 +13,18 @@ interface Props {
   setOrderBy: Function;
   setOrder: Function;
   setLimit: Function;
+  data: any;
 }
 
 export const SearchBar = ({
   searchTerm,
   setSearchTerm,
-  searchField,
   setSearchField,
   setPage,
   setOrder,
   setOrderBy,
   setLimit,
+  data,
 }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -30,7 +32,7 @@ export const SearchBar = ({
   };
 
   return (
-    <div className="flex flex-row text-sm">
+    <div className="flex flex-row text-sm w-full">
       <div className="flex flex-row border border-secondary-grey-light rounded-lg px-4 py-2 focus-within:ring">
         <div className="w-5 h-5 p-0.5">
           <Image
@@ -53,7 +55,7 @@ export const SearchBar = ({
       <div className="ml-2">
         <SearchNameEmailToggle setSearchField={setSearchField} />
       </div>
-      <div className="ml-10">
+      <div className="ml-auto flex flex-row items-center">
         <FilterBar
           description="Only top 50 holders"
           orderBy="shareCount"
@@ -63,6 +65,10 @@ export const SearchBar = ({
           setLimit={setLimit}
           limit={50}
         />
+      </div>
+      {/* // align items to left of screen */}
+      <div className="ml-10 flex flex-row items-center">
+        <ExportCSV data={data} />
       </div>
     </div>
   );

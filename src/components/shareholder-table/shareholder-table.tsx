@@ -70,7 +70,7 @@ export const ShareholderTable = () => {
 
   return (
     <>
-      <div className="flex flex-row justify-start">
+      <div className="flex flex-row">
         <SearchBar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -80,6 +80,7 @@ export const ShareholderTable = () => {
           setOrderBy={setOrderBy}
           setOrder={setOrder}
           setLimit={setLimit}
+          data={shareholders}
         />
       </div>
       <div className="md:block hidden w-full border border-secondary-grey-light rounded-lg my-6 ">

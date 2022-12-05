@@ -9,7 +9,7 @@ import {
   TableRow,
   TableCell,
 } from '../table';
-import { ShareholderAvatarCell } from './shareholder-avatar-cell.tsx';
+import { ShareholderAvatarCell } from './shareholder-avatar-cell';
 import { SearchBar } from '../search/search';
 import { TablePagination } from '../table/table-pagination';
 

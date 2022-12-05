@@ -56,24 +56,52 @@ export const TablePagination = ({
       : // if the current page is > 4 and < the last page - 3, show the first page, page +1 and page -1, and the last page
         [1, '...', page - 1, page, page + 1, '...', numPages];
 
+  const resultsMessage = `Showing ${page * pageSize - pageSize + 1} to ${
+    page * pageSize > totalSize ? totalSize : page * pageSize
+  } of ${totalSize} results`;
+
   return (
-    <div>
-      {pageList.map((pageNum: any) => {
-        return pageNum == '...' ? (
-          <span className="px-2">...</span>
-        ) : pageNum == page ? (
-          <span className="px-2 font-bold">{pageNum}</span>
-        ) : (
-          <button
-            className="px-2"
-            onClick={() => {
-              setPage(pageNum - 1);
-            }}
-          >
-            {pageNum}
-          </button>
-        );
-      })}
+    <div className="flex flex-row">
+      <div className="flex flex-row items-center">
+        <div className="text-sm text-gray-500">{resultsMessage}</div>
+        <div className="flex flex-row items-center ml-4">
+          <div className="text-sm text-gray-500">Rows per page:</div>
+          <div className="ml-2">
+            <select
+              className="text-sm text-gray-500 border border-gray-300 rounded-md px-2 py-1"
+              value={pageSize}
+              onChange={(e) => {
+                setPageSize(parseInt(e.target.value));
+                setPage(0);
+              }}
+            >
+              <option value={10}>10</option>
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-row items-center ml-auto"></div>
+      <div>
+        {pageList.map((pageNum: any) => {
+          return pageNum == '...' ? (
+            <span className="px-2">...</span>
+          ) : pageNum == page ? (
+            <span className="px-2 font-bold">{pageNum}</span>
+          ) : (
+            <button
+              className="px-2"
+              onClick={() => {
+                setPage(pageNum - 1);
+              }}
+            >
+              {pageNum}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 };

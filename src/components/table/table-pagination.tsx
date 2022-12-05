@@ -23,7 +23,7 @@ export const TablePagination = ({
   const pageList =
     // if there are 7 or fewer pages, show all pages
     numPages <= 7
-      ? [...Array.from({ length: 7 }, (_, i) => i + 1)]
+      ? [...Array.from({ length: numPages }, (_, i) => i + 1)]
       : // if the current page is 1 or the last page, show the first 3 and last 3 pages
       page == 1 || page == numPages
       ? [1, 2, 3, '...', numPages - 2, numPages - 1, numPages]

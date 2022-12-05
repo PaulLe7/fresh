@@ -11,16 +11,25 @@ const handler: NextApiHandler = async (req, res) => {
       return;
     }
 
-    const { searchTerm, searchField, cursor, page, pageSize, orderBy, order } =
-      req.query as unknown as {
-        searchTerm: string;
-        searchField: string;
-        cursor: string;
-        page: number;
-        pageSize: number;
-        orderBy: string;
-        order: string;
-      };
+    const {
+      searchTerm,
+      searchField,
+      cursor,
+      page,
+      pageSize,
+      orderBy,
+      order,
+      limit,
+    } = req.query as unknown as {
+      searchTerm: string;
+      searchField: string;
+      cursor: string;
+      page: number;
+      pageSize: number;
+      orderBy: string;
+      order: string;
+      limit: number;
+    };
 
     const take = pageSize ? Number(pageSize) : 10;
     const skip = page && pageSize ? Number(page) * Number(pageSize) : 1;
@@ -40,6 +49,7 @@ const handler: NextApiHandler = async (req, res) => {
           : {},
       }),
       prisma.shareholder.count({
+        take: limit ? Number(limit) : undefined,
         orderBy: orderBy ? { [orderBy]: order } : undefined,
         where: searchTerm
           ? {

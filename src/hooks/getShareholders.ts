@@ -11,6 +11,7 @@ interface Props {
   pageSize: number;
   orderBy: string;
   order: string;
+  limit: number;
 }
 
 const getShareholders = ({
@@ -21,11 +22,14 @@ const getShareholders = ({
   pageSize,
   orderBy,
   order,
+  limit,
 }: Props) => {
   const getQueryParams = (searchTerm: string, searchField: string) => {
     return `?searchTerm=${searchTerm}&searchField=${searchField}${
       cursor && page > 1 ? '&cursor=' + cursor : ''
-    }&page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&order=${order}`;
+    }&page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&order=${order}${
+      limit != 0 ? '&limit=' + limit : ''
+    }`;
   };
 
   const params = getQueryParams(searchTerm, searchField);

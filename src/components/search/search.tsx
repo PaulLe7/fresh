@@ -9,6 +9,9 @@ interface Props {
   searchField: string;
   setSearchField: Function;
   setPage: Function;
+  setOrderBy: Function;
+  setOrder: Function;
+  setLimit: Function;
 }
 
 export const SearchBar = ({
@@ -17,6 +20,9 @@ export const SearchBar = ({
   searchField,
   setSearchField,
   setPage,
+  setOrder,
+  setOrderBy,
+  setLimit,
 }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -48,7 +54,15 @@ export const SearchBar = ({
         <SearchNameEmailToggle setSearchField={setSearchField} />
       </div>
       <div className="ml-10">
-        <FilterBar description="Only top 50 holders" value="" />
+        <FilterBar
+          description="Only top 50 holders"
+          orderBy="shareCount"
+          order="desc"
+          setOrderBy={setOrderBy}
+          setOrder={setOrder}
+          setLimit={setLimit}
+          limit={50}
+        />
       </div>
     </div>
   );

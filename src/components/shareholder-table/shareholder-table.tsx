@@ -25,6 +25,7 @@ export const ShareholderTable = () => {
   const [pageSize, setPageSize] = useState(10);
   const [orderBy, setOrderBy] = useState('firstName');
   const [order, setOrder] = useState('asc');
+  const [limit, setLimit] = useState(0);
 
   const { shareholders, totalShareholders, myCursor, isLoading, isError } =
     getShareholders({
@@ -35,6 +36,7 @@ export const ShareholderTable = () => {
       pageSize,
       orderBy,
       order,
+      limit,
     });
 
   useEffect(() => {
@@ -75,6 +77,9 @@ export const ShareholderTable = () => {
           searchField={searchField}
           setSearchField={setSearchField}
           setPage={setPage}
+          setOrderBy={setOrderBy}
+          setOrder={setOrder}
+          setLimit={setLimit}
         />
       </div>
       <div className="md:block hidden w-full border border-secondary-grey-light rounded-lg my-6 ">

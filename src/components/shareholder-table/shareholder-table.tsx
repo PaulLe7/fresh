@@ -72,6 +72,7 @@ export const ShareholderTable = () => {
           setSearchTerm={setSearchTerm}
           searchField={searchField}
           setSearchField={setSearchField}
+          setPage={setPage}
         />
       </div>
       <div className="md:block hidden w-full border border-secondary-grey-light rounded-lg my-6 ">

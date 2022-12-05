@@ -7,6 +7,7 @@ interface Props {
   setSearchTerm: Function;
   searchField: string;
   setSearchField: Function;
+  setPage: Function;
 }
 
 export const SearchBar = ({
@@ -14,9 +15,11 @@ export const SearchBar = ({
   setSearchTerm,
   searchField,
   setSearchField,
+  setPage,
 }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
+    setPage(0);
   };
 
   return (

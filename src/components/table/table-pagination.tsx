@@ -117,7 +117,7 @@ export const TablePagination = ({
             <span className="px-2">...</span>
           ) : pageNum == page ? (
             <button
-              className="px-2 hidden border w-9 h-9 font-semibold sm:inline-block"
+              className="px-2 hidden border border-gray-900 w-9 h-9 font-semibold sm:inline-block bg-gray-100"
               disabled
             >
               <span className="text-primary-black font-extrabold ">

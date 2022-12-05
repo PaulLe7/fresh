@@ -54,7 +54,7 @@ export const ShareholderTable = () => {
 
   return (
     <>
-      <div className="flex flex-row">
+      <div className="flex flex-row mt-4">
         <SearchBar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}

@@ -74,7 +74,7 @@ We'd like you to pick 1-2 problems and come up with an idea to solve them. Use y
 
 2. Implement toggling desc/asc order of shareholder holding size
     - <span style="color:green; font-weight:bold">Done: </span> Asc/desc toggle 
-    - <span style="color:red; font-weight:bold">Not done: </span> Also implement a one-click filter option that shows the top 50 holders 
+    - <span style="color:green; font-weight:bold">Done: </span> Also implement a one-click filter option that shows the top 50 holders 
 
 3. Implement a way to export shareholder list as CSV
     - <span style="color:red; font-weight:bold">Not done: </span> No need to implement ordering as this can be done on the CSV itself post-export

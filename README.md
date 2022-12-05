@@ -77,7 +77,7 @@ We'd like you to pick 1-2 problems and come up with an idea to solve them. Use y
     - <span style="color:green; font-weight:bold">Done: </span> Also implement a one-click filter option that shows the top 50 holders 
 
 3. Implement a way to export shareholder list as CSV
-    - <span style="color:red; font-weight:bold">Not done: </span> No need to implement ordering as this can be done on the CSV itself post-export
+    - <span style="color:green; font-weight:bold">Done: </span> No need to implement ordering as this can be done on the CSV itself post-export
 
 4. Implement an 'import list' button that checks whether the same email already exists in the database and then asks what fields they'd like to replace
     - <span style="color:red; font-weight:bold">Not done: </span> Import function

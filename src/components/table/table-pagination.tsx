@@ -35,6 +35,9 @@ export const TablePagination = ({
       ? [1, 2, 3, 4, 5, '...', numPages]
       : // if the current page is the last page - 1, show the first 2 and last 4 pages
       page == numPages - 1
+      ? [1, 2, '...', numPages - 3, numPages - 2, numPages - 1, numPages]
+      : // if the current page is the last page - 2, show the first 1 and last 5 pages
+      page == numPages - 2
       ? [
           1,
           '...',
@@ -42,17 +45,6 @@ export const TablePagination = ({
           numPages - 3,
           numPages - 2,
           numPages - 1,
-          numPages,
-        ]
-      : // if the current page is the last page - 2, show the first 1 and last 5 pages
-      page == numPages - 2
-      ? [
-          1,
-          '...',
-          numPages - 5,
-          numPages - 4,
-          numPages - 3,
-          numPages - 2,
           numPages,
         ]
       : // if the current page is > 4 and < the last page - 3, show the first page, page +1 and page -1, and the last page

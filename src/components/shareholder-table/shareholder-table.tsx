@@ -54,6 +54,7 @@ export const ShareholderTable = () => {
 
   return (
     <>
+      {/* Search bar with filtering checkboxes*/}
       <div className="flex flex-row mt-4">
         <SearchBar
           searchTerm={searchTerm}
@@ -67,6 +68,7 @@ export const ShareholderTable = () => {
           data={shareholders}
         />
       </div>
+      {/* Mobile view */}
       <div className="md:hidden w-full my-2 rounded-lg">
         {!isLoading &&
           !isError &&
@@ -77,6 +79,7 @@ export const ShareholderTable = () => {
             />
           ))}
       </div>
+      {/* Desktop view */}
       <div className="md:block hidden w-full border border-secondary-grey-light rounded-lg my-6 ">
         <Table>
           <TableHead>
@@ -130,6 +133,7 @@ export const ShareholderTable = () => {
           </TableBody>
         </Table>
       </div>
+      {/* Pagination menu */}
       <TablePagination
         page={page}
         pageSize={pageSize}

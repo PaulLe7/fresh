@@ -31,7 +31,11 @@ const handler: NextApiHandler = async (req, res) => {
       limit: number;
     };
 
+    // how many rows per page
     const take = pageSize ? Number(pageSize) : 10;
+
+    // The result will be that if page and pageSize are not null, then we get the skip value
+    // If page and pageSize are null, then we just get the first page of data
     const skip = page && pageSize ? Number(page) * Number(pageSize) : 1;
 
     const [shareholders, totalShareholders] = await prisma.$transaction([
@@ -43,12 +47,14 @@ const handler: NextApiHandler = async (req, res) => {
           ? {
               [searchField]: {
                 startsWith: searchTerm,
+                // case insensitive
                 mode: 'insensitive',
               },
             }
           : {},
       }),
       prisma.shareholder.count({
+        // take is limited for the filter option e.g. in this case, for the top 50 shareholders
         take: limit ? Number(limit) : undefined,
         orderBy: orderBy ? { [orderBy]: order } : undefined,
         where: searchTerm
@@ -62,7 +68,7 @@ const handler: NextApiHandler = async (req, res) => {
       }),
     ]);
 
-    // cursor-based pagination
+    // id to be stored if using cursor-based pagination
     const myCursor = shareholders[shareholders.length - 1]?.id;
 
     res.status(200).json({ shareholders, totalShareholders, myCursor });

@@ -16,7 +16,8 @@ export const ShareholderAvatarCell = ({
 
   return (
     <div>
-      <div className="flex items-center md:flex hidden">
+      {/* Desktop view */}
+      <div className="items-center md:flex hidden">
         <div className="flex-shrink-0">
           <div className="flex flex-row items-center justify-left">
             <span

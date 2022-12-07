@@ -1,5 +1,7 @@
 import swr from 'swr';
 
+// this is used later in the useSWR function below
+// basically, it's a function that takes a query string and returns a promise
 const fetcher = (queryParams = '') =>
   fetch(`/api/shareholders${queryParams}`).then((res) => res.json());
 
@@ -36,6 +38,7 @@ const getShareholders = ({
 
   console.log(params);
 
+  // params are provided to the fetcher and swr handles the rest
   const { data, error } = swr(params, fetcher);
 
   return {

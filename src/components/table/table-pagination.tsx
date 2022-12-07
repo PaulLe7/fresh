@@ -67,7 +67,7 @@ export const TablePagination = ({
           <span className="font-bold">{lastShowingResult}</span> of{' '}
           <span className="font-bold">{totalSize} results</span>
         </div>
-        <div className="flex flex-row items-center ml-10 md:flex hidden">
+        <div className="flex-row items-center ml-10 md:flex hidden">
           <div className="text-sm text-gray-500 ">Rows per page:</div>
           <div className="ml-2">
             <select
